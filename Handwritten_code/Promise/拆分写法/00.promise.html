@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./02.promise.js"></script>
+    <script>
+      const promise = new MyPromise((resolve, reject) => {
+        resolve ();
+        // reject(777);
+      });
+      console.log(promise);
+
+      promise
+        .then((value) => {
+          console.log(11111, value);
+        })
+        // catch还是会执行,匹配的时候上一次是成功的,然后catch接收这个成功promise,是undefined,调用onResulved调用resolve报错
+        .catch((err) => {
+          console.log(22222, err);
+        })
+        .then((value) => {
+          console.log(33333, value);
+        })
+        .catch((reason) => {
+          console.log(4444, reason);
+        });
+
+    </script>
+  </body>
+</html>

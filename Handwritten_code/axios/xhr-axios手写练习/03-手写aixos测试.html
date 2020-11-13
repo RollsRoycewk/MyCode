@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./03-手写axios.js"></script>
+    <script>
+      axios({
+        method: "post",
+        url: "http://localhost:3000/posts",
+        // params:{
+        //     name:"rolls",
+        //     age:18
+        // }
+        data: {
+          title: "bmw",
+          author: "x7",
+        },
+      }).then(
+        (value) => {
+          console.log(value);
+        },
+        (reason) => {}
+      );
+    </script>
+  </body>
+</html>

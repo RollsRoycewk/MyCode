@@ -1,0 +1,53 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "ghost",
+      "author": "rolls-royce"
+    },
+    {
+      "body": "LP750",
+      "aythor": "lan",
+      "id": 3
+    },
+    {
+      "body": "LP750",
+      "aythor": "lan",
+      "id": 4
+    },
+    {
+      "body": "rolls",
+      "aythor": "royce",
+      "id": 5
+    },
+    {
+      "body": "rolls",
+      "aythor": "royce",
+      "id": 6
+    },
+    {
+      "title": "bmw",
+      "author": "x7",
+      "id": 7
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "陆地巡航舰",
+      "postId": 1
+    },
+    {
+      "body": "G63",
+      "id": 2
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

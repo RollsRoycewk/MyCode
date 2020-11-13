@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./01-promise.js"></script>
+    <script>
+      const a = new MyPromise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(111)
+        }, 2000);
+      });
+
+      const b = new MyPromise((resolve, reject) => {
+        // resolve(222)
+        reject(777)
+      });
+
+
+      const c = new MyPromise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(666)
+        }, 3000);
+      });
+      const d = new MyPromise((resolve, reject) => {
+        resolve(444  )
+        // reject(678)
+      });
+
+
+
+      // const res = MyPromise.all([a,b,c,555,d,678,321,444])
+      // console.log(res)
+      const res = MyPromise.allSettled([a,b,c,555,d,678,321,444])
+      console.log(res)
+
+      setTimeout(() => {
+        console.log(res)
+      }, 3000);
+      // const p = new MyPromise((resolve, reject) => {
+      //   // resolve("resolved传递的数据.899");
+      //   reject("初次调用reject   00000");
+      // });
+
+      // const te = new MyPromise((resolve, reject) => {
+      //   // resolve(123);
+      //   reject(456)
+      // });
+
+      // // const pro = MyPromise.resolve(te)
+      // const pro = MyPromise.reject(te);
+      // console.log(pro);
+
+      //  const res = Promise.reject(www)
+      //  console.log(res)
+      // console.log(w)
+      // const res = p
+      //   .then(
+      //     (value) => {
+      //       console.log(value);
+      //       return new MyPromise((resolve, reject) => {
+      //         resolve(789);
+      //         // reject(111)
+      //       });
+      //       // return 99999
+      //     },
+      //     (reason) => {
+      //       console.log(reason);
+      //       return new MyPromise((resolve,reject)=>{
+      //         // resolve(1230000)
+      //         reject(456)
+      //       })
+      //       // return 33;
+      //     }
+      //   )
+      // .then(
+      //   (value) => {
+      //     console.log("第二个then方法", value);
+      //     return 123;
+      //   },
+      //   (reason) => {
+      //     console.log(reason);
+      //   }
+      // )
+      // const res = p.then((result) => {
+      //   console.log(result);
+      //   return 123
+      // })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     return 123
+      //   })
+      //   .then((result) => {
+      //     console.log(result);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     return 123
+      //   });
+    </script>
+  </body>
+</html>

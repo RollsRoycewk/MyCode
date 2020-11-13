@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn01">GET</button>
+    <button id="btn02">POST</button>
+    <button id="btn03">PUT</button>
+    <button id="btn04">PATCH</button>
+    <button id="btn05">DELETE</button>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script>
+        // axios.get("http://localhost:3000/posts")
+        // .then((value)=>{console.log(value)})
+        // .catch((error)=>{console.log(error)})
+
+        btn01.onclick = function(){
+            axios({
+            method:"GET",
+            url:"http://localhost:3000/posts"
+        })
+        .then((value)=>{console.log(value)})
+        .catch((error)=>{console.log(error)})
+        }
+
+
+        btn02.onclick = function(){
+            axios({
+            method:"POST",
+            url:"http://localhost:3000/comments",
+            data:{
+                "body": "rolls royce",
+                "postId": 2
+            }
+        })
+        .then((value)=>{console.log(value)})
+        .catch((error)=>{console.log(error)})
+        }
+
+        btn03.onclick = function(){
+            axios({
+            method:"PUT",
+            url:"http://localhost:3000/comments/2",
+            data:{
+                "body": "G63",
+            }
+        })
+        .then((value)=>{console.log(value)})
+        .catch((error)=>{console.log(error)})
+        }
+
+        btn04.onclick = function(){
+            axios({
+            method:"PATCH",
+            url:"http://localhost:3000/comments/1",
+            data:{
+                "body": "陆地巡航舰",
+            }
+        })
+        .then((value)=>{console.log(value)})
+        .catch((error)=>{console.log(error)})
+        }
+
+        btn05.onclick = function(){
+            axios({
+            method:"DELETE",
+            url:"http://localhost:3000/posts/3",
+            data:{
+                "body": "陆地巡航舰",
+            }
+        })
+        .then((value)=>{console.log(value)})
+        .catch((error)=>{console.log(error)})
+        }
+
+    </script>
+</body>
+</html>
