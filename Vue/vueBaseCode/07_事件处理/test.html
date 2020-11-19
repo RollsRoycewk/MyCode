@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>07_事件处理</title>
+  </head>
+  <body>
+    <!--
+1. 绑定监听:
+  v-on:xxx="fun"
+  @xxx="fun"
+  @xxx="fun(参数)"
+  默认事件形参: event
+  隐含属性对象: $event
+2. 事件修饰符:
+  .prevent : 阻止事件的默认行为 event.preventDefault()
+  .stop : 停止事件冒泡 event.stopPropagation()
+3. 按键修饰符
+  .keycode : 操作的是某个keycode值的健
+  .enter : 操作的是enter键
+-->
+
+    <div id="example">
+      <h2>1. 绑定监听</h2>
+      <!-- 只传入一个参数,默认参数就是event -->
+      <button @click="handleClick1">不传参</button>
+      <!-- 如果想传入其他参数,函数调用传入参数即可  -->
+      <button @click="handleClick2(1,2,3)">参入参数,但是没有event</button>
+      <!-- 如果想传入其他参数和event,写$event -->
+      <button @click="handleClick3(1,2,3,$event)">传入参数和EVENT</button>
+
+      <h2>2. 事件修饰符</h2>
+      <!-- prevent阻止事件的默认行为 -->
+      <a href="http://www.baidu.com" @click.prevent="handleClick4">去百度</a>
+
+      <ul @click="handleClick5">
+        <!-- stop阻止事件冒泡 -->
+        <li @click.stop="handleClick6">111111</li>
+        <li @click.stop.prevent>222222</li>
+        <li>333333</li>
+      </ul>
+
+      <h2>3. 按键修饰符</h2>
+      <input type="text" @keyup.13="handleClick7" />
+      <input type="text" @keyup.enter="handleClick7" />
+      <input type="text" @keyup.a="handleClick7" />
+    </div>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: "example",
+        methods: {
+          handleClick1(event) {
+            console.log(event);
+            console.log(arguments);
+          },
+          handleClick2(a, b, c) {
+            console.log(arguments);
+          },
+          handleClick3(a, b, c, event) {
+            console.log(arguments);
+            console.log(event);
+          },
+          handleClick4(event) {
+            // event.preventDefault();
+          },
+          handleClick5(event) {
+            console.log(555);
+            // event.stopPropagation();
+          },
+          handleClick6() {
+            console.log(666);
+            // event.stopPropagation();
+          },
+          handleClick7(event) {
+            console.log(event.keyCode);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="$destroy()">点击我关闭</button>
+      <h1 v-show="isShow">{{msg}}</h1>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "北京上海广州",
+          isShow: true,
+        },
+        mounted() {
+          this.timer = setInterval(() => {
+            console.log(111);
+            this.isShow = !this.isShow;
+          }, 1000);
+        },
+        beforeDestroy() {
+          clearInterval(this.timer);
+        },
+      });
+    </script>
+  </body>
+</html>

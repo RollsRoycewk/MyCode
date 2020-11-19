@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>08_条件渲染</title>
+  </head>
+  <body>
+    <!--
+      1. 条件渲染指令
+        v-if
+        v-else
+        v-show
+      2. 比较v-if与v-show
+        如果需要频繁切换 v-show 较好
+      -->
+
+    <div id="app">
+      <button @click="handleShow">点击切换状态</button>
+      <h1 v-if="isShow">北京北京北京北京</h1>
+      <h2 v-show="isShow">上海上海上海上海</h2>
+
+      <h1 v-if="isShow">北京北京北京北京</h1>
+      <h2 v-else>上海上海上海上海</h2>
+
+      <h1 v-if="isShow">北京北京北京北京</h1>
+      <h2 v-else-if="show">上海上海上海上海</h2>
+      <h3 v-else>广州广州广州广州</h3>
+    </div>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: "#app",
+        data: {
+          isShow: true,
+          show: true,
+        },
+        methods: {
+          handleShow() {
+            this.isShow = !this.isShow;
+            // this.isShow = false;
+            // this.show = false;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

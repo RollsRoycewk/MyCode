@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>06_列表渲染</title>
+  </head>
+  <body>
+    <!--
+1. 列表显示
+  数组: v-for / index
+  对象: v-for / key
+2. 列表的更新显示
+  删除item
+  替换item
+-->
+
+    <div id="demo">
+      <h2>测试: v-for 遍历数组</h2>
+      <!-- 带索引 -->
+      <ul>
+        <li v-for="(item,index) in arr" :key="item.id">
+          {{index}}---{{item.id}}---{{item.name}}---{{item.age}}
+          <button @click="del(item.id)">删除</button>
+          <button @click="add(item.id)">增加年龄</button>
+        </li>
+      </ul>
+
+      <h2>测试: v-for 遍历对象</h2>
+      <!-- 基础 -->
+      <ul>
+        <li v-for="value in person" :key="value">{{value}}</li>
+      </ul>
+
+      <!-- 基础 -->
+      <ul>
+        <li v-for="value,key in person" :key="value">{{key}}---{{value}}</li>
+      </ul>
+    </div>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: "#demo",
+        data: {
+          arr: [
+            { id: 1, name: "jack", age: 18 },
+            { id: 2, name: "tom", age: 28 },
+            { id: 3, name: "lily", age: 18 },
+          ],
+          person: {
+            name: "chenguanxi",
+            age: 28,
+            hobby: "吃喝玩乐",
+          },
+        },
+        methods: {
+          del(id) {
+            this.arr = this.arr.filter((item) => item.id !== id);
+          },
+          add(id) {
+            const res = this.arr.find((item) => item.id === id);
+            res.age += 1;
+
+            /* this.arr = this.arr.map((item) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  age: ++item.age,
+                };
+              }
+              return item;
+            }); */
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

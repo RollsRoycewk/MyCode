@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>北京上海广州深圳</h1>
+      <test-component></test-component>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      //   const TestComponent = Vue.extend({
+      //     data() {
+      //       return {
+      //         num: 0,
+      //       };
+      //     },
+      //     methods: {
+      //       handle() {
+      //         this.num++;
+      //       },
+      //     },
+      //     template:
+      //       "<div><p>{{num}}</p><button @click='handle'>点我数字加加</button></div>",
+      //   });
+
+      /* 注册全局组件 */
+      //   Vue.component("test-component", TestComponent);
+
+      // 上面的简写
+      Vue.component("test-component", {
+        data() {
+          // 返回值就是data数据
+          return {
+            num: 0,
+          };
+        },
+        methods: {
+          handle() {
+            this.num++;
+          },
+        },
+        // 组件模板页面（组件要渲染的页面）
+        // 组件渲染的内容：必须有且有一个根标签
+        template:
+          "<div><p>{{num}}</p><button @click='handle'>点我数字加加</button></div>",
+      });
+
+      new Vue({
+        el: "#app",
+      });
+    </script>
+  </body>
+</html>

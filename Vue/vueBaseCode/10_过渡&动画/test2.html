@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>10_过渡&动画2</title>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: relative;
+        left: 0;
+        /* transition: all 2s; */
+        animation: move 5s linear 1s infinite alternate-reverse;
+      }
+
+      @keyframes move {
+        0% {
+          left: 0;
+        }
+        50% {
+          left: 500px;
+        }
+        100% {
+          left: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="left+=100">点击我向右偏移100</button>
+
+      <div id="box" :style='{left:left+"px"}'></div>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          left: 0,
+        },
+      });
+    </script>
+  </body>
+</html>

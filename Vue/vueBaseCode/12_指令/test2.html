@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>12_指令_自定义指令</title>
+  </head>
+  <body>
+    <!--
+1. 注册全局指令
+  Vue.directive('my-directive', function(el, binding){
+    el.innerHTML = binding.value.toupperCase()
+  })
+2. 注册局部指令
+  directives : {
+    'my-directive' : {
+        bind (el, binding) {
+          el.innerHTML = binding.value.toupperCase()
+        }
+    }
+  }
+3. 使用指令
+  v-my-directive='xxx'
+-->
+    <!--
+需求: 自定义2个指令
+  1. 功能类型于v-text, 但转换为全大写
+  2. 功能类型于v-text, 但转换为全小写
+-->
+    <div id="app">
+      <p v-text="msg"></p>
+      <!-- 使用局部自定义指令 -->
+      <p v-upper-text="msg"></p>
+      <!-- 使用全局自定义指令 -->
+      <p v-lower-text="msg"></p>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      // 全局自定义指令
+      Vue.directive("lower-text", (el, binding) => {
+        el.innerText = binding.value.toLowerCase();
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "beijingnihao",
+        },
+        // 定义局部指令：只对当前实例生效
+        directives: {
+          // 'upper-text' 是指令名称 function () {} 指令回调函数
+          "upper-text": function (el, binding) {
+            // console.log(el, binding); // el就是这个元素,binding是一个对象
+            /*
+              el 绑定指令的DOM元素
+              binding 是一个对象，包含指令和表达式等数据
+                {
+                  expression: "msg" 表达式
+                  name: "upper-text" 指令名称
+                  rawName: "v-upper-text" 指令全称
+                  value: "beijingnihao" 表达式的值
+                }
+            */
+            el.innerText = binding.value.toUpperCase();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

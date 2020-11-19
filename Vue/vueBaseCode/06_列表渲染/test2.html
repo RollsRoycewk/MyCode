@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>06_列表渲染_过滤与排序</title>
+  </head>
+  <body>
+    <!--
+1. 列表过滤
+2. 列表排序
+-->
+    <div id="app">
+      <input type="text" placeholder="请输入要查询信息" v-model="searchRes" />
+      <ul>
+        <li v-for="item in reasult" :key="item.id">
+          {{item.id}}--{{item.name}}--{{item.age}}
+        </li>
+      </ul>
+      <button @click="selectType = 1">升序</button>
+      <button @click="selectType = -1">降序</button>
+      <button @click="selectType = 0">原来</button>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: "#app",
+        data: {
+          arr: [
+            { id: 1, name: "tom", age: 10 },
+            { id: 2, name: "xiaoming", age: 8 },
+            { id: 3, name: "jack", age: 27 },
+            { id: 4, name: "lily", age: 36 },
+            { id: 6, name: "sun", age: 57 },
+            { id: 7, name: "boy", age: 45 },
+          ],
+          searchRes: "",
+          selectType: 0,
+        },
+        computed: {
+          reasult() {
+            // 过滤
+            const result = this.arr.filter((item) => {
+              return item.name.includes(this.searchRes);
+            });
+            // 原本排序
+            if (this.selectType === 0) return result;
+
+            // 排序
+            const done = result.sort((a, b) => {
+              return this.selectType == 1 ? a.age - b.age : b.age - a.age;
+            });
+            return done;
+          },
+        },
+        watch: {},
+      });
+    </script>
+  </body>
+</html>

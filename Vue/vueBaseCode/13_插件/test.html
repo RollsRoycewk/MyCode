@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>17_插件</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{date | nowDate("YYYY-MM-DD")}}</p>
+    <p v-lower-text="msg"></p>
+  </div>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.9.4/dayjs.min.js"></script>
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script src="./Myplugin.js"></script>
+  <script type="text/javascript">
+    // 必须要在new Vue 之前使用插件
+    // 使用Vue插件 --> 调用插件函数，传入Vue
+    Vue.use(Myplugin);
+    new Vue({
+      el: "#app",
+      data: {
+        msg: "BEIJING",
+        date: Date.now(),
+      },
+      mounted() {
+        Vue.globalplugin();
+        this.$instanceMethods();
+      },
+    });
+  </script>
+</body>
+
+</html>
